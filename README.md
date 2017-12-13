@@ -7,7 +7,7 @@ A powerful React Native swipe component.  Supports both iOS and Android.
 ## Installation
 
 ```sh
-npm i --save react-native-swipeable
+npm i --save git+https://github.com/flyskywhy/react-native-swipeable
 ```
 
 ## Usage
