@@ -157,6 +157,7 @@ export default class Swipeable extends PureComponent {
   state = {
     pan: new Animated.ValueXY(),
     width: 0,
+    height: 0,
     lastOffset: {x: 0, y: 0},
     leftActionActivated: false,
     leftButtonsActivated: false,
@@ -427,7 +428,7 @@ export default class Swipeable extends PureComponent {
     onPanResponderTerminationRequest: this._handlePanResponderEnd
   });
 
-  _handleLayout = ({nativeEvent: {layout: {width}}}) => this.setState({width});
+  _handleLayout = ({nativeEvent: {layout: {width, height}}}) => this.setState({width, height});
 
   _canSwipeRight() {
     return this.props.leftContent || this._hasLeftButtons();
@@ -561,7 +562,7 @@ export default class Swipeable extends PureComponent {
 
   _renderButtons(buttons, isLeftButtons) {
     const {leftButtonContainerStyle, rightButtonContainerStyle} = this.props;
-    const {pan, width} = this.state;
+    const {pan, width, height} = this.state;
     const canSwipeLeft = this._canSwipeLeft();
     const canSwipeRight = this._canSwipeRight();
     const count = buttons.length;
@@ -581,7 +582,7 @@ export default class Swipeable extends PureComponent {
       }];
       const buttonStyle = [
         StyleSheet.absoluteFill,
-        {width, transform},
+        {width, height, transform},
         isLeftButtons ? leftButtonContainerStyle : rightButtonContainerStyle
       ];
 
